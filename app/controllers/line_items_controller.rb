@@ -61,8 +61,8 @@ class LineItemsController < ApplicationController
   def destroy
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to store_index_url, notice: 'Line item was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to store_index_url , notice: 'Line item was successfully destroyed.' }
+      format.json { render :show, status: :destroyed, location: @line_item }
     end
   end
 
