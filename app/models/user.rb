@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true
-  validates :email, uniqueness: true, format: { with: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}\z/ }
+  validates :email, presence: true
+  validates :email, uniqueness: true, format: { with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}\z/ }, allow_blank: true
   has_secure_password
   after_destroy :ensure_an_admin_remains
 
