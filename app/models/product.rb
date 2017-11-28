@@ -24,6 +24,7 @@ class Product < ApplicationRecord
   validates :description, length: { in: 5..10 }
   validates :image_url, image_url: true, allow_blank: true
   validate :price_cannot_be_less_than_discount_price, if: :discount_price?
+
   # validates :price, price: true, if: :discount_price?
 
   private
