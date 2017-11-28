@@ -21,6 +21,6 @@
 /yarn-error.log
 
 .byebug_history
-/config/secrets.yml
+config/secrets.yml
 db/.DS_Store
 db/migrate/.DS_Store
