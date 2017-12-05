@@ -1,0 +1,17 @@
+<% if @user.line_items.present? %>
+<table border=1>
+  <tr>
+    <th> Product Id </th>
+    <th> Quantity </th>
+  </tr>
+
+  <% @user_line_items.each do |line_item| %>
+    <tr>
+      <td> <%= line_item.product.title %> </td>
+      <td> <%= line_item.quantity %> </td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= paginate @user_line_items %></p>
+<% end %>

@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_current_user, only: [:show_user_orders, :show_user_line_items]
   extend ActiveSupport::Concern
   # GET /users
   # GET /users.json
   def index
-    @users = User.order(:name)
+    @users = User.all
   end
 
   # GET /users/1
@@ -60,9 +61,22 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      if @user.destroy
+        format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      else
+        format.html { redirect_to users_url, notice: 'Can\'t delete admin' }
+      end
       format.json { head :no_content }
     end
+  end
+
+  def show_user_orders
+    render layout: 'new'
+  end
+
+  def show_user_line_items
+    @user_line_items = @user.line_items.page(params[:page]).per(5)
+    render layout: 'new'
   end
 
   private
@@ -70,6 +84,11 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
+
+    def set_current_user
+      @user = User.find(session[:user_id])
+    end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params

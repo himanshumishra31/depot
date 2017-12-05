@@ -33,6 +33,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
+gem 'kaminari'
+gem "activeadmin", git: "https://github.com/gregbell/active_admin"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

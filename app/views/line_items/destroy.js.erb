@@ -1,0 +1,7 @@
+$('#cart tr#<%= @line_item.id %>').hide(500, function() {
+  $(this).remove();
+  var lineItems = $("#cart tr").length;
+  if(lineItems == 1) {
+    $('#cart').hide();
+  }
+});

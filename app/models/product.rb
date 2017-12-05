@@ -11,11 +11,10 @@ class PriceValidator < ActiveModel::EachValidator
 end
 
 class Product < ApplicationRecord
-  has_many :line_items
-  has_many :orders, through: :line_items
-  before_destroy :ensure_not_referenced_by_any_line_item
+  has_many :line_items, dependent: :restrict_with_error
+  has_many :carts, through: :line_items
   before_validation :set_default_title, unless: :title?
-  before_save :set_discount_price, unless: :discount_price?
+  before_validation :set_discount_price, unless: :discount_price?
   validates :title, :description, :image_url, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }, if: :price?
   validates :title, uniqueness: true
@@ -28,12 +27,6 @@ class Product < ApplicationRecord
   # validates :price, price: true, if: :discount_price?
 
   private
-    def ensure_not_referenced_by_any_line_item
-      unless line_items.empty?
-        errors.add(:base, t(".Line Items present"))
-        throw :abort
-      end
-    end
 
     def price_cannot_be_less_than_discount_price
       errors.add(:price, "should be greater than discount price") if price < discount_price
