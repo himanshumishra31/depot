@@ -27,6 +27,7 @@ class Product < ApplicationRecord
   validate :price_cannot_be_less_than_discount_price, if: :discount_price?
 
   after_create :increment_count
+  # find another method
 
   # validates :price, price: true, if: :discount_price?
 
