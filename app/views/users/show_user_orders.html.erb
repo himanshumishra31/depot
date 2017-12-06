@@ -1,11 +1,11 @@
-<% if @user.orders.present? %>
+<% if @current_user.orders.present? %>
 <table border = 1>
   <tr>
     <th> Items</th>
     <th> Total Price</th>
   </tr>
 
-  <% @user.orders.each do |order| %>
+  <% @current_user.orders.each do |order| %>
     <tr>
       <td>
         <% order.line_items.each do |line_item| %>
