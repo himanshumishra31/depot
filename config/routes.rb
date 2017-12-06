@@ -13,8 +13,11 @@ Rails.application.routes.draw do
   end
 
   scope '(:locale)' do
-    get '/users/orders' => 'users#show_user_orders'
-    get '/users/line_items' => 'users#show_user_line_items'
+    get '/users/orders', to: 'users#show_user_orders'
+    # resources :users do
+    #   resources :orders
+    # end
+    get '/users/line_items', to: 'users#show_user_line_items'
     resources :users
     resources :orders
     resources :line_items
