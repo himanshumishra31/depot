@@ -11,7 +11,6 @@ class PriceValidator < ActiveModel::EachValidator
 end
 
 class Product < ApplicationRecord
-  scope :enabled, -> { where(enabled: true) }
   has_many :line_items, dependent: :restrict_with_error
   has_many :carts, through: :line_items
   before_validation :set_default_title, unless: :title?

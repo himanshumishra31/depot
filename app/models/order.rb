@@ -1,5 +1,4 @@
 class Order < ApplicationRecord
-  scope :by_date, -> (from = Time.current.midnight, to = Time.current.end_of_day) { where created_at: from..to }
   has_many :line_items, dependent: :destroy
   belongs_to :user
   enum pay_type: {
