@@ -14,12 +14,13 @@ Rails.application.routes.draw do
   end
 
   scope '(:locale)' do
-    get '/users/orders' => 'users#show_user_orders'
-    get '/users/line_items' => 'users#show_user_line_items'
+    get '/users/orders', to: 'users#show_user_orders'
+    get '/users/line_items', to: 'users#show_user_line_items'
     resources :users
     resources :orders
     resources :line_items
     resources :carts
+    resources :categories
     root 'store#index', as: 'store_index', via: :all
   end
 

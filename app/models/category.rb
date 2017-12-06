@@ -8,7 +8,8 @@ class Category < ApplicationRecord
   private
 
   def sub_category_exist?
-    Category.exists?(parent_category_id: parent_category_id)
+    # debugger
+    Category.exists?(parent_category_id: parent_category_id) && !( parent_category_id.nil? )
   end
 
   def parent_category_should_exist?
