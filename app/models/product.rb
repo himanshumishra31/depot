@@ -14,6 +14,7 @@ class Product < ApplicationRecord
   scope :enabled, -> { where(enabled: true) }
   has_many :line_items, dependent: :restrict_with_error
   has_many :carts, through: :line_items
+  belongs_to :category, counter_cache: :count
   before_validation :set_default_title, unless: :title?
   before_validation :set_discount_price, unless: :discount_price?
   validates :title, :description, :image_url, presence: true
@@ -24,6 +25,8 @@ class Product < ApplicationRecord
   validates :description, length: { in: 5..10 }
   validates :image_url, image_url: true, allow_blank: true
   validate :price_cannot_be_less_than_discount_price, if: :discount_price?
+
+  after_create :increment_count
 
   # validates :price, price: true, if: :discount_price?
 
@@ -39,5 +42,12 @@ class Product < ApplicationRecord
 
     def set_discount_price
       self.discount_price = price
+    end
+
+    def increment_count
+      parent_category = Category.find(category_id).parent_category_id
+      if parent_category?
+        Category.increment_counter(:count, parent_category)
+      end
     end
 end
