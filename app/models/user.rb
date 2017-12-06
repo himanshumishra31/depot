@@ -21,9 +21,6 @@ class User < ApplicationRecord
 
     def ensure_user_is_not_admin
       throw :abort if email == 'admin@depot.com'
-      # raise Error.new "User can't be deleted or modified" if email == 'admin@depot.com'
-      # false
-      # throw :abort
     end
 
     def send_welcome_email
