@@ -58,8 +58,13 @@ class ProductsController < ApplicationController
   # DELETE /products/1.json
   def destroy
     @product.destroy
+    # debugger
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      if @product.errors.empty?
+        format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      else
+        format.html { redirect_to products_url, notice: 'Can\'t delete product due to errors' }
+      end
       format.json { head :no_content }
     end
   end

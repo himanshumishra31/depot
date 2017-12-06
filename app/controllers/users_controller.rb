@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.order(:name)
+    @users = User.all
   end
 
   # GET /users/1
@@ -60,9 +60,18 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      if @user.destroy
+        format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      else
+        format.html { redirect_to users_url, notice: 'Can\'t delete admin' }
+      end
       format.json { head :no_content }
     end
+  end
+
+  def show_user_line_items
+    @current_user_line_items = @current_user.line_items.page(params[:page]).per(5)
+    # routes nested routes
   end
 
   private
@@ -70,6 +79,7 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params

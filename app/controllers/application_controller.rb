@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :authorize
   before_action :set_i18n_locale_from_params
   protect_from_forgery with: :exception
+  before_action :current_user
 
   protected
 
@@ -21,4 +22,9 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+
+    def current_user
+      @current_user ||= User.find(session[:user_id])
+    end
+
 end
