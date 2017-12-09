@@ -15,6 +15,8 @@ class Product < ApplicationRecord
   has_many :line_items, dependent: :restrict_with_error
   has_many :carts, through: :line_items
   belongs_to :category, counter_cache: :count
+  has_many :images
+  accepts_nested_attributes_for :images
   # has_one :parent_category,through: :category, source: :categories, counter_cache: :count
   before_validation :set_default_title, unless: :title?
   before_validation :set_discount_price, unless: :discount_price?
@@ -48,7 +50,7 @@ class Product < ApplicationRecord
 
     def increment_count
       parent_category = Category.find(category_id).parent_category_id
-      if parent_category?
+      if parent_category.present?
         Category.increment_counter(:count, parent_category)
       end
     end

@@ -9,6 +9,7 @@ class Category < ApplicationRecord
   has_many :products, dependent: :restrict_with_error
   has_many :sub_category_products, through: :sub_categories, source: :products
 
+
   private
 
   def parent_category_should_exist?
