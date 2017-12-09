@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  after_action :save_product_images, only: [:create, :update]
+  after_action :update_products, only: [:update]
+  after_action :create_products, only: [:create]
 
   # GET /products
   # GET /products.json
@@ -39,13 +42,12 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
-    save_product_images
+    # save_product_images
   end
 
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
-    save_product_images
 
     respond_to do |format|
       if @product.update(product_params)
@@ -99,12 +101,32 @@ class ProductsController < ApplicationController
     def save_product_images
       3.times do |index|
         image = params[:product]["image#{ index + 1 }"]
-        path = File.join Rails.root, 'public', 'images'
-        FileUtils.mkdir_p(path) unless File.exist?(path)
-        File.open(File.join(path, image.original_filename), 'wb') do |file|
-          file.puts image.read
+        if image.present?
+          path = File.join Rails.root, 'public', 'images'
+          FileUtils.mkdir_p(path) unless File.exist?(path)
+          File.open(File.join(path, image.original_filename), 'wb') do |file|
+            file.puts image.read
+          end
         end
-        @product.images.build(name: image.original_filename, content_type: image.content_type).save
+      end
+    end
+
+    def update_products
+      3.times do |index|
+        image = params[:product]["image#{ index + 1 }"]
+        if image.present?
+            @product.images.build(name: image.original_filename, content_type: image.content_type).save
+          end
+        end
+      end
+    end
+
+    def create_products
+      3.times do |index|
+        image = params[:product]["image#{ index + 1 }"]
+        if image.present?
+          @product.images.build(name: image.original_filename, content_type: image.content_type).save
+        end
       end
     end
 
