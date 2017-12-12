@@ -22,7 +22,10 @@ class User < ApplicationRecord
     end
 
     def ensure_user_is_not_admin
-      throw :abort if email == 'admin@depot.com'
+      if email == 'admin@depot.com'
+        errors.add(:email, 'cannot update admin')
+        throw :abort
+      end
     end
 
     def send_welcome_email

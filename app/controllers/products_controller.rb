@@ -42,7 +42,6 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
-    # save_product_images
   end
 
   # PATCH/PUT /products/1

@@ -50,5 +50,13 @@
         <%= yield %>
       </div>
     </div>
+    <footer>
+        <p>Hit Counter:
+        <% if @current_user %>
+          <%= session[:url_view_counter][request.path] %></p>
+        <% end %>
+
+      <p>Your ip address is <%= request.remote_ip %></p>
+    </footer>
   </body>
 </html>
