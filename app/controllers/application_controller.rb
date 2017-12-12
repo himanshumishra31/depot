@@ -2,7 +2,9 @@ class ApplicationController < ActionController::Base
   before_action :authorize
   before_action :set_i18n_locale_from_params
   protect_from_forgery with: :exception
-  before_action :current_user
+  before_action :current_user, only: [:show_user_orders, :show_user_line_items]
+
+
 
   protected
 
