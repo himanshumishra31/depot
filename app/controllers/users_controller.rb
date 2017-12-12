@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @user.build_address
   end
 
   # GET /users/1/edit
@@ -70,7 +71,12 @@ class UsersController < ApplicationController
   end
 
   def show_user_line_items
-    @current_user_line_items = @current_user.line_items.page(params[:page]).per(5)
+    @current_user_line_items = @current_user.line_items.page(params[:page]).per(Items_Per_Page)
+    render layout: 'himanshu'
+  end
+
+  def show_user_orders
+    render layout: 'himanshu'
   end
 
   private
@@ -81,6 +87,6 @@ class UsersController < ApplicationController
   
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation, :email)
+      params.require(:user).permit(:name, :password, :password_confirmation, :email, address_attributes: [:country,:state,:city,:street])
     end
 end

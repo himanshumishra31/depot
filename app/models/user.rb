@@ -9,6 +9,8 @@ class User < ApplicationRecord
   before_update :ensure_user_is_not_admin
   has_many :orders
   has_many :line_items, through: :orders
+  has_one :address
+  accepts_nested_attributes_for :address
 
   class Error < StandardError
   end

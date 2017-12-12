@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   before_action :current_user, only: [:show_user_orders, :show_user_line_items]
 
 
-
   protected
 
     def authorize

@@ -1,5 +1,13 @@
 <p id="notice"><%= notice %></p>
 
+<div data-slider="uploaded_image">
+  <% if @product.images.present? %>
+    <% @product.images.each do |image| %>
+      <%= image_tag('/images/' + image.name, class: 'uploaded_image') %>
+    <% end %>
+  <% end %>
+</div>
+
 <p>
   <strong>Title:</strong>
   <%= @product.title %>
