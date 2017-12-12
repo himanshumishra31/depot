@@ -1,5 +1,6 @@
 class Image < ApplicationRecord
+
   belongs_to :product
-  validates :content_type, inclusion: { in: %w(image/jpeg image/png image/gif) }
+  validates :content_type, inclusion: { in: Image_Validation }
 
 end

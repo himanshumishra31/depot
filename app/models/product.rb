@@ -12,14 +12,8 @@ end
 
 class Product < ApplicationRecord
   scope :enabled, -> { where(enabled: true) }
-  has_many :line_items, dependent: :restrict_with_error
-  has_many :carts, through: :line_items
-  belongs_to :category, counter_cache: :count
-  has_many :images, dependent: :destroy
-  accepts_nested_attributes_for :images
-  # has_one :parent_category,through: :category, source: :categories, counter_cache: :count
-  before_validation :set_default_title, unless: :title?
-  before_validation :set_discount_price, unless: :discount_price?
+
+  #validations
   validates :title, :description, :image_url, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }, if: :price?
   validates :title, uniqueness: true
@@ -29,10 +23,19 @@ class Product < ApplicationRecord
   validates :image_url, image_url: true, allow_blank: true
   validate :price_cannot_be_less_than_discount_price, if: :discount_price?
 
+  #callbacks
+  before_validation :set_default_title, unless: :title?
+  before_validation :set_discount_price, unless: :discount_price?
   after_create :increment_count
-  # find another method
 
-  # validates :price, price: true, if: :discount_price?
+  # associations
+  has_many :line_items, dependent: :restrict_with_error
+  has_many :carts, through: :line_items
+  belongs_to :category, counter_cache: :count
+  has_many :images, dependent: :destroy
+  accepts_nested_attributes_for :images
+
+
 
   private
 

@@ -71,7 +71,7 @@ class UsersController < ApplicationController
   end
 
   def show_user_line_items
-    @current_user_line_items = @current_user.line_items.page(params[:page]).per(5)
+    @current_user_line_items = @current_user.line_items.page(params[:page]).per(Items_Per_Page)
     render layout: 'himanshu'
   end
 
