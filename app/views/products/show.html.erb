@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-
 <div data-slider="uploaded_image">
   <% if @product.images.present? %>
     <% @product.images.each do |image| %>
@@ -7,36 +6,29 @@
     <% end %>
   <% end %>
 </div>
-
 <p>
   <strong>Title:</strong>
   <%= @product.title %>
 </p>
-
 <p>
   <strong>Description:</strong>
   <%= @product.description %>
 </p>
-
 <p>
   <strong>Image url:</strong>
   <%= @product.image_url %>
 </p>
-
 <p>
   <strong>Price:</strong>
   <%= @product.price %>
 </p>
-
 <p>
   <strong>Discount Price:</strong>
   <%= @product.discount_price %>
 </p>
-
 <p>
   <strong>Permanent Link</strong>
   <%= @product.permalink %>
 </p>
-
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

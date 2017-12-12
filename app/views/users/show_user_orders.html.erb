@@ -1,22 +1,20 @@
 <% if @current_user.orders.present? %>
-<table border = 1>
-  <tr>
-    <th> Items</th>
-    <th> Total Price</th>
-  </tr>
-
-  <% @current_user.orders.each do |order| %>
+  <table border = 1>
     <tr>
-      <td>
-        <% order.line_items.each do |line_item| %>
-          <%= pluralize(line_item.quantity, line_item.product.title) %>
-        <% end %>
-      </td>
-
-      <td>
-        <%= order.total_price %>
-      </td>
+      <th> Items</th>
+      <th> Total Price</th>
     </tr>
-  <% end %>
-</table>
+    <% @current_user.orders.each do |order| %>
+      <tr>
+        <td>
+          <% order.line_items.each do |line_item| %>
+            <%= pluralize(line_item.quantity, line_item.product.title) %>
+          <% end %>
+        </td>
+        <td>
+          <%= order.total_price %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 <% end %>
