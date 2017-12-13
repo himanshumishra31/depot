@@ -1,10 +1,9 @@
 <% if @current_user.orders.present? %>
   <table border = 1>
-    <tr>
-      <th> Items</th>
-      <th> Total Price</th>
-    </tr>
-
+  <tr>
+    <th> Items</th>
+    <th> Total Price</th>
+  </tr>
     <% @current_user.orders.each do |order| %>
       <tr>
         <td>

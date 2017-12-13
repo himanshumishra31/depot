@@ -28,6 +28,18 @@ class CategoriesController < InheritedResources::Base
     end
   end
 
+  def show_categories
+    @category = Category.find(params[:id])
+  end
+
+  def show_products
+    @category = Category.where(id: params[:id]).eager_load(:products, :sub_category_products)
+    if @category.present?
+      @category_products = @category.first.products
+      @sub_category_products = @category.first.sub_category_products
+    end
+  end
+
   private
 
     def category_params
