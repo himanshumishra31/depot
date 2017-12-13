@@ -7,7 +7,12 @@ class OrderMailer < ApplicationMailer
   #
   def received(order)
     @order = order
-
+    @order.line_items.each do |line_item|
+      attachments.inline[line_item.product.image_url] = File.read("#{ Rails.root.to_s }/app/assets/images/#{ line_item.product.image_url }")
+      line_item.product.images.each do |image|
+        attachments[image.name] = File.read("#{ Rails.root.to_s }/public/images/#{ image.name }")
+      end
+    end
     mail to: order.email, subject: 'Pragmatic Store Order Confirmation'
   end
 
