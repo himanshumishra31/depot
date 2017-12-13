@@ -8,7 +8,7 @@
     </tr>
     <% @categories.each do |category| %>
       <tr>
-        <td><%= category.title %></td>
+        <td><%= link_to category.title, categories_show_products_url(category.id) %></td>
         <% if category.parent_category.present? %>
           <td><%= category.parent_category.title %></td>
         <% else %>
