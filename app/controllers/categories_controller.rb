@@ -1,6 +1,6 @@
 class CategoriesController < InheritedResources::Base
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  # before_action :all_categories, only: [:show_categories]
+  before_action :all_categories, only: [:show_categories]
 
   def create
     @category = Category.new(category_params)

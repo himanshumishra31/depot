@@ -2,7 +2,7 @@ class Admin::ReportsController < Admin::BaseController
   before_action :set_from_to_date
 
   def index
-    @orders = Order.by_date(@from, @to)
+    @orders = Order.by_date(@from_date, @to_date)
   end
 
   private

@@ -39,14 +39,16 @@ class ApplicationController < ActionController::Base
       start = Time.current
       yield
       duration = start - Time.current
-      response.headers[" #{ request.path } responsed in"] = duration
+      response.headers['x-responded-in'] = duration
     end
 
     def check_for_inactivity
-      if Time.now - session[:last_activity_time].to_time > 1.minutes
-        clear_session
-      else
-        session[:last_activity_time] = Time.now
+      if current_user
+        if Time.now - session[:last_activity_time].to_time > 1.minutes
+          clear_session
+        else
+          session[:last_activity_time] = Time.now
+        end
       end
     end
 

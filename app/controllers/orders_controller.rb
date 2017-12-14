@@ -28,15 +28,12 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    # @order = Order.new(order_params)
-    # debugger
     @user = User.find(session[:user_id])
     @order = @user.orders.create(order_params)
     @order.add_line_items_from_cart(@cart)
 
     respond_to do |format|
       if @order.save
-        # Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         OrderMailer.received(@order).deliver_later
         format.html { redirect_to store_index_url, notice: I18n.t('.thanks') }
