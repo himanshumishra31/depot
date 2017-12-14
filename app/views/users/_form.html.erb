@@ -1,72 +1,60 @@
 <div class="depot_form">
-
   <%= form_for @user do |form| %>
     <% if @user.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
         <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
         </ul>
       </div>
     <% end %>
-
     <fieldset>
       <legend>Enter User Details</legend>
       <div class="field">
         <%= form.label :name, t('.name') %>
         <%= form.text_field :name, size: 40 %>
       </div>
-
       <div class="field">
         <%= form.label :password, 'Password:' %>
         <%= form.password_field :password, size: 40 %>
       </div>
-
       <div class="field">
         <%= form.label :password_confirmation, 'Confirm:' %>
         <%= form.password_field :password_confirmation, size: 40 %>
       </div>
-
       <div class="field">
         <%= form.label :email, 'Email:' %>
         <%= form.email_field :email, size: 40 %>
       </div>
-
       <div class="field">
         <%= form.fields_for :address do |add| %>
           <%= add.label :state, 'State:' %>
           <%= add.text_field :state, size: 40 %>
         <% end %>
       </div>
-
       <div class="field">
         <%= form.fields_for :address do |add| %>
           <%= add.label :city, 'City:' %>
           <%= add.text_field :city, size: 40 %>
         <% end %>
       </div>
-
       <div class="field">
         <%= form.fields_for :address do |add| %>
           <%= add.label :country, 'Country:' %>
           <%= add.text_field :country, size: 40 %>
         <% end %>
       </div>
-
       <div class="field">
         <%= form.fields_for :address do |add| %>
           <%= add.label :pincode, 'Pincode:' %>
           <%= add.number_field :pincode, size: 40 %>
         <% end %>
       </div>
-
       <div class="actions">
         <%= form.submit %>
       </div>
     </fieldset>
   <% end %>
 </div>
-

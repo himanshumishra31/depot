@@ -13,8 +13,10 @@ Rails.application.routes.draw do
     get '/users/orders', to: 'users#show_user_orders'
     get '/users/line_items', to: 'users#show_user_line_items'
     get '/categories/all', to: 'categories#show_categories'
-
-    get '/users/line_items', to: 'users#show_user_line_items'
+    get '/admin/report'
+    namespace :admin do
+      resources :reports, :categories
+    end
     resources :users
     resources :orders
     resources :line_items

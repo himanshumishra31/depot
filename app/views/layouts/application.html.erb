@@ -6,7 +6,6 @@
       "data-turbolinks-track" => 'reload' %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => 'reload' %>
     <%= javascript_include_tag "slider", "data-turbolinks-track" => 'reload' %>
-
     <%= csrf_meta_tags %>
   </head>
   <body class="<%= controller.controller_name %>">
@@ -19,7 +18,6 @@
       <%= image_tag 'logo.svg', alt: t('.title') %>
       <span class="title"><%= @page_title %></span>
     </div>
-
     <div id="columns">
       <div id="side">
         <div id="cart">
@@ -29,14 +27,12 @@
             <% end %>
           <% end %>
         </div>
-
         <ul>
           <li><a href="http://www...."><%= t('.home') %></a></li>
           <li><a href="http://www..../faq"><%= t('.questions') %></a></li>
           <li><a href="http://www..../news"><%= t('.news') %></a></li>
           <li><a href="http://www..../contact"><%= t('.contact') %></a></li>
         </ul>
-
         <% if session[:user_id] %>
           <ul>
             <li><%= link_to 'Orders', orders_path %></li>
@@ -50,5 +46,12 @@
         <%= yield %>
       </div>
     </div>
+    <footer>
+      <p>Hit Counter:
+        <% if @current_user %>
+          <%= session[:url_view_counter][request.path] %></p>
+      <% end %>
+      <p>Your ip address is <%= request.remote_ip %></p>
+    </footer>
   </body>
 </html>
