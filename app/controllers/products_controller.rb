@@ -112,20 +112,20 @@ class ProductsController < ApplicationController
       associated_images.times do |index|
         image = params[:product]["image#{ index + 1 }"]
         if image.present?
-            @product.images.update(name: image.original_filename, content_type: image.content_type)
+          @product.images.update(name: image.original_filename, content_type: image.content_type)
         end
       end
       (associated_images..3).each do |index|
         image = params[:product]["image#{ index + 1 }"]
         if image.present?
-            @product.images.build(name: image.original_filename, content_type: image.content_type).save
+          @product.images.build(name: image.original_filename, content_type: image.content_type).save
         end
       end
     end
 
     def create_products
-      3.times do |index|
-        image = params[:product]["image#{ index + 1 }"]
+      (1..3).times do |index|
+        image = params[:product]["image#{ index }"]
         if image.present?
           @product.images.build(name: image.original_filename, content_type: image.content_type).save
         end

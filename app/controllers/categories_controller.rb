@@ -28,9 +28,6 @@ class CategoriesController < InheritedResources::Base
     end
   end
 
-  def show_categories
-  end
-
   private
 
     def category_params

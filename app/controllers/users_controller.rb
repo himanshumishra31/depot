@@ -71,7 +71,7 @@ class UsersController < ApplicationController
   end
 
   def show_user_line_items
-    @current_user_line_items = @current_user.line_items.page(params[:page]).per(5)
+    @current_user_line_items = @current_user.line_items.page(params[:page]).per(Items_Per_Page)
     render layout: 'himanshu'
   end
 
@@ -84,7 +84,7 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
-
+  
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :password, :password_confirmation, :email, address_attributes: [:country,:state,:city,:street])

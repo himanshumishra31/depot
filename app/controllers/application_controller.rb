@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :increment_view_counter
   before_action :check_for_inactivity
 
+
   protected
 
     def authorize

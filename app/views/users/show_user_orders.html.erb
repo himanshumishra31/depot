@@ -4,6 +4,7 @@
       <th> Items</th>
       <th> Total Price</th>
     </tr>
+
     <% @current_user.orders.each do |order| %>
       <tr>
         <td>
@@ -17,4 +18,6 @@
       </tr>
     <% end %>
   </table>
+<% else %>
+  <h1> No Orders Present
 <% end %>
