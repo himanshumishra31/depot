@@ -17,7 +17,6 @@ class Product < ApplicationRecord
   belongs_to :category, counter_cache: :count
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images
-  # has_one :parent_category,through: :category, source: :categories, counter_cache: :count
   before_validation :set_default_title, unless: :title?
   before_validation :set_discount_price, unless: :discount_price?
   validates :title, :description, :image_url, presence: true
@@ -28,11 +27,10 @@ class Product < ApplicationRecord
   validates :description, length: { in: 5..10 }
   validates :image_url, image_url: true, allow_blank: true
   validate :price_cannot_be_less_than_discount_price, if: :discount_price?
+  # validates :price, price: true, if: :discount_price?
 
   after_create :increment_count
-  # find another method
 
-  # validates :price, price: true, if: :discount_price?
 
   private
 
