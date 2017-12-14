@@ -2,70 +2,57 @@
   <% if product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
-
       <ul>
-      <% product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title, id: :product_title %>
   </div>
-
   <div class="field">
     <%= form.label :description %>
     <%= form.text_area :description, id: :product_description %>
   </div>
-
   <div class="field">
     <%= form.label :image_url %>
     <%= form.text_field :image_url, id: :product_image_url %>
   </div>
-
   <div class="field">
     <%= form.label :image1 %>
     <%= form.file_field :image1, id: :product_image1 %>
   </div>
-
   <div class="field">
     <%= form.label :image2 %>
     <%= form.file_field :image2, id: :product_image2 %>
   </div>
-
   <div class="field">
     <%= form.label :image3 %>
     <%= form.file_field :image3, id: :product_image3 %>
   </div>
-
   <div class="field">
     <%= form.label :price %>
     <%= form.number_field :price, id: :product_price %>
   </div>
-
   <div class="field">
     <%= form.label :enabled %>
     <%= form.check_box :enabled, id: :product_enabled %>
   </div>
-
   <div class="field">
     <%= form.label :discount_price %>
     <%= form.number_field :discount_price, id: :product_discount_price %>
   </div>
-
   <div class="field">
     <%= form.label :permalink %>
     <%= form.text_field :permalink, id: :product_permalink %>
   </div>
-
   <div class="field">
     <%= form.label :category_id %>
     <%= form.select :category_id, categories, prompt: 'Select one' %>
   </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>

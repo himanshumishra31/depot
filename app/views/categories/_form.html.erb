@@ -9,17 +9,14 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title, id: :category_title %>
   </div>
-
   <div class="field">
     <%= form.label :parent_category_id %>
     <%= form.number_field :parent_category_id,  min: 0, id: :category_parent_category_id %>
   </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>
