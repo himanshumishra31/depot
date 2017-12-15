@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   before_action :increment_view_counter
   before_action :check_for_inactivity
 
-
   protected
 
     def authorize
@@ -44,7 +43,7 @@ class ApplicationController < ActionController::Base
 
     def check_for_inactivity
       if current_user
-        if Time.now - session[:last_activity_time].to_time > 1.minutes
+        if Time.now - session[:last_activity_time].to_time > 10.minutes
           clear_session
         else
           session[:last_activity_time] = Time.now
@@ -54,6 +53,7 @@ class ApplicationController < ActionController::Base
 
     def clear_session
       session.clear
+      I18n.locale = I18n.default_locale
       redirect_to store_index_url, notice: "Logged out due to inactivity"
     end
 

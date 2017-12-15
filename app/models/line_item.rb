@@ -5,6 +5,6 @@ class LineItem < ApplicationRecord
   validates :product_id, uniqueness: { scope: :cart_id, message: "duplicate entry" }
 
   def total_price
-    product.price * quantity
+    product.discount_price * quantity
   end
 end
