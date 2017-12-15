@@ -53,6 +53,7 @@ class ApplicationController < ActionController::Base
 
     def clear_session
       session.clear
+      I18n.locale = I18n.default_locale
       redirect_to store_index_url, notice: "Logged out due to inactivity"
     end
 

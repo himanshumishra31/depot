@@ -124,7 +124,7 @@ class ProductsController < ApplicationController
     end
 
     def create_products
-      (1..3).times do |index|
+      (1..3).each do |index|
         image = params[:product]["image#{ index }"]
         if image.present?
           @product.images.build(name: image.original_filename, content_type: image.content_type).save

@@ -13,6 +13,7 @@ class OrderMailer < ApplicationMailer
         attachments[image.name] = File.read("#{ Rails.root.to_s }/public/images/#{ image.name }")
       end
     end
+    headers['X-SYSTEM-PROCESS-ID'] = Process.pid
     I18n.with_locale(@order.user.language) do
       mail to: order.email, subject: t('.subject')
     end

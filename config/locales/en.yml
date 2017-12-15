@@ -108,9 +108,14 @@ en:
       Items: 'Items'
       total_price: 'Total price %{total_price}'
 
-
-
-
-
+  activerecord:
+    errors:
+      messages:
+        blank: 'cannot be blank'
+      template:
+        body: 'Following are the errors'
+        header:
+          one: '1 error prevented this %{model} from saving'
+          other: '%{count} Saving errors saved this %{model}'
 
 
