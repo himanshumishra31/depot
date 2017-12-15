@@ -1,0 +1,75 @@
+hi:
+  order_mailer:
+    received:
+      received: 'हमने आपका ऑर्डर प्राप्त कर लिया है और हम इसे जल्द ही भेज देंगे।'
+      subject: "आदेश की पुष्टि"
+      greeting: "नमस्ते %{name}"
+      Name: 'नाम'
+      Price: 'मूल्य'
+      Discount: 'छूट'
+      Quantity: 'मात्रा'
+      Image: 'छवि'
+      title: "%{title}"
+      price_value: "%{price_value}"
+      discount_price_value: "%{discount_price_value}"
+      quantity_value: "%{quantity_value}"
+      total: 'कुल कीमत %{total}'
+      no_item: 'कोई चीज़ नहीं'
+
+  user_mailer:
+    consolidate_mail:
+      product: 'उत्पाद आइ डि'
+      Quantity: 'मात्रा'
+      title: "%{title}"
+      quantity_value: "%{quantity_value}"
+      no_item: 'कोई चीज़ नहीं'
+      subject: "समेकित आदेश सारांश"
+      no_item: 'कोई चीज़ नहीं'
+      total: 'कुल'
+      items: 'आइटम'
+      total_price: 'कुल कीमत %{total_price}'
+
+  activerecord:
+    errors:
+      messages:
+        inclusion: 'सूची का हिस्सा नहीं है'
+        blank: 'रिक्त नहीं हो सकता'
+
+    attributes:
+      category:
+        name: 'नाम'
+      user:
+        email: 'ईमेल'
+        name: 'नाम'
+      address:
+        state: 'राज्य'
+        city: 'शहर'
+        country: 'देश'
+        pincode: 'पिन कोड'
+
+  store:
+    index:
+      title_html: 'सूची'
+      add_html: 'कार्ट में डालें'
+
+  carts:
+    cart:
+      title: 'आपका कार्ट'
+      checkout: 'चेक आउट'
+      empty: 'खाली'
+
+  orders:
+    new:
+      legend: 'अपना विवरण दर्ज करें'
+    form:
+      name: 'नाम'
+      address_html: 'पता'
+      email: 'ईमेल'
+      pay_type: 'भुगतान प्रकार'
+      pay_prompt_html: 'भुगतान प्रकार चुनें'
+      submit: 'जमा करें'
+
+  greeting: 'नमस्कार'
+  thanks: 'धन्यवाद'
+
+  invalid_credentials: 'कृपया अपने लॉगिन क्रेडेंशियल्स की जांच करें'

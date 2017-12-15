@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
 
     def check_for_inactivity
       if current_user
-        if Time.now - session[:last_activity_time].to_time > 1.minutes
+        if Time.now - session[:last_activity_time].to_time > 10.minutes
           clear_session
         else
           session[:last_activity_time] = Time.now

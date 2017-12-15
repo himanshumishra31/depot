@@ -1,5 +1,6 @@
 class UserMailer < ApplicationMailer
-  default from: Rails.application.secrets.username
+  default from: 'Him <himanshumishra3@gmail.com>'
+
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -9,5 +10,12 @@ class UserMailer < ApplicationMailer
   def self.created(user)
     @user = user
     ActionMailer::Base.mail(from: Rails.application.secrets.username, to: @user.email, subject: 'Pragmatic Store', body: "Welcome").deliver
+  end
+
+  def consolidate_mail(user)
+    @current_user = user
+    I18n.with_locale(user.language) do
+      mail to: user.email, subject: t('.subject')
+    end
   end
 end

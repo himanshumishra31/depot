@@ -78,3 +78,39 @@ en:
       submit:       "Place Order"
 
   thanks:          "Thank you for your order"
+
+  order_mailer:
+    received:
+      received: 'Order Received'
+      subject: 'Welcome to Pragmatic Store'
+      greeting: "Hi %{name}"
+      Name: 'Name'
+      Price: 'Price'
+      Discount: 'Discount Price'
+      Quantity: 'Quantity'
+      Image: 'Image'
+      title: "%{title}"
+      price_value: "%{price_value}"
+      discount_price_value: "%{discount_price_value}"
+      quantity_value: "%{quantity_value}"
+      total: 'Total Amount: %{total}'
+      no_item: 'No Items Present'
+
+  user_mailer:
+    consolidate_mail:
+      subject: 'Welcome to Pragmatic Store'
+      product: 'Product Id'
+      Quantity: 'Quantity'
+      title: "%{title}"
+      quantity_value: "%{quantity_value}"
+      no_item: 'No Items Present'
+      total: 'Total Price'
+      Items: 'Items'
+      total_price: 'Total price %{total_price}'
+
+
+
+
+
+
+

@@ -5,4 +5,12 @@ namespace :db do
       user.update_columns role: 'admin'
     end
   end
+
+  desc "Send consolidate email"
+  task :set_consolidate_email => :environment do
+    User.all.each do |user|
+      UserMailer.consolidate_mail(user).deliver_now
+    end
+  end
+
 end

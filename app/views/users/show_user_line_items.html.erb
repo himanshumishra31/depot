@@ -1,17 +1,16 @@
 <% if @current_user.line_items.present? %>
   <table border=1>
     <tr>
-      <th> Product Id </th>
-      <th> Quantity </th>
+      <th><%= t('.product') %></th>
+      <th><%= t('.Quantity') %></th>
     </tr>
-    <% @current_user_line_items.each do |line_item| %>
+    <% @current_user.line_items.each do |line_item| %>
       <tr>
-        <td> <%= line_item.product.title %> </td>
-        <td> <%= line_item.quantity %> </td>
+        <td><%= t('.tiile', title: line_item.product.title) %> </td>
+        <td><%= t('.quantity_value', quantity_value: line_item.quantity) %> </td>
       </tr>
     <% end %>
   </table>
-  <p><%= paginate @current_user_line_items %></p>
 <% else %>
-  <h1> No Line Items present </h1>
+  <h1> <%= t('.no_item')%></h1>
 <% end %>

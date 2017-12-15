@@ -1,8 +1,8 @@
 <% if @current_user.orders.present? %>
   <table border = 1>
   <tr>
-    <th> Items</th>
-    <th> Total Price</th>
+    <th><%= t('.Items') %></th>
+    <th><%= t('.total')%></th>
   </tr>
     <% @current_user.orders.each do |order| %>
       <tr>
@@ -12,11 +12,11 @@
           <% end %>
         </td>
         <td>
-          <%= order.total_price %>
+          <%= t('total_price', total_price: order.total_price) %>
         </td>
       </tr>
     <% end %>
   </table>
 <% else %>
-  <h1> No Orders Present
+  <h1><%= t('.no_item') %></h1>
 <% end %>
