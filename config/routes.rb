@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :carts
     resources :categories
     resources :books, controller: 'products'
+    resources :ratings
     root 'store#index', as: 'store_index', via: :all
   end
 

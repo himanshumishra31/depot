@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  around_action :add_custom_header
+  # around_action :add_custom_header
   before_action :authorize
   before_action :set_i18n_locale_from_params
   protect_from_forgery with: :exception

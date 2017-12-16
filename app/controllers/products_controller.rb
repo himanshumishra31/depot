@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    get_rating_object
   end
 
   # GET /products/new
@@ -129,6 +130,20 @@ class ProductsController < ApplicationController
         if image.present?
           @product.images.build(name: image.original_filename, content_type: image.content_type).save
         end
+      end
+    end
+
+    def get_rating_object
+      if @product.ratings.exists?
+        @rating = Rating.new
+        @product.ratings.each do |rating|
+          if rating.user_id = current_user.id
+            @rating = rating
+            break
+          end
+        end
+      else
+        @rating = Rating.new
       end
     end
 

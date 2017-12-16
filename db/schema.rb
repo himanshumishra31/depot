@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171214153536) do
+ActiveRecord::Schema.define(version: 20171216063437) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "state"
@@ -82,6 +82,14 @@ ActiveRecord::Schema.define(version: 20171214153536) do
     t.integer "category_id"
     t.string "image_url"
     t.index ["category_id"], name: "index_products_on_category_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "user_id"
+    t.decimal "value", precision: 2, scale: 1
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

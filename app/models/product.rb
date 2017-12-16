@@ -35,6 +35,7 @@ class Product < ApplicationRecord
   has_many :carts, through: :line_items
   belongs_to :category, counter_cache: :count
   has_many :images, dependent: :destroy
+  has_many :ratings, dependent: :destroy
   accepts_nested_attributes_for :images
 
   private
